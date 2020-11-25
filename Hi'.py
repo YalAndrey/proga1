@@ -11,23 +11,23 @@ from PyQt5 import uic
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui')
-        self.pushButton.cliked.count(self.drawRectangles)
+        uic.loadUi('UI.ui', self)
+        self.pushButton.clicked.connect(self.repaint)
 
     def paintEvent(self, e):
-        qp = QPainter()
-        qp.begin(self)
-        self.drawRectangles(qp)
-        qp.end()
+        self.qp = QPainter()
+        self.qp.begin(self)
+        self.drawRectangle()
+        self.qp.end()
 
-    def drawRectangles(self, qp):
+    def drawRectangle(self):
         col = QColor(0, 0, 0)
         col.setNamedColor('#d4d4d4')
-        qp.setPen(col)
+        self.qp.setPen(col)
 
-        qp.setBrush(QColor(random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))
+        self.qp.setBrush(QColor(255, 255, 0))
         num = random.randint(1, 400)
-        qp.drawEllipse(100, 100, num, num)
+        self.qp.drawEllipse(100, 100, num, num)
 
 
 if __name__ == '__main__':
