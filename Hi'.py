@@ -6,12 +6,13 @@ from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QMainWindow
 from PyQt5.QtGui import QPainter, QColor, QBrush
 import random
 from PyQt5 import uic
+from UI import Ui_MainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.repaint)
 
     def paintEvent(self, e):
