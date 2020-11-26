@@ -25,7 +25,9 @@ class MyWidget(QMainWindow):
         col.setNamedColor('#d4d4d4')
         self.qp.setPen(col)
 
-        self.qp.setBrush(QColor(255, 255, 0))
+        self.qp.setBrush(QColor(random.randint(0, 255),
+                                random.randint(0, 255),
+                                random.randint(0, 255)))
         num = random.randint(1, 400)
         self.qp.drawEllipse(100, 100, num, num)
 
